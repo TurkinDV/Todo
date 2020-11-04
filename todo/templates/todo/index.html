@@ -1,11 +1,24 @@
+{% load static %}
 <html>
     <head>
-        <title>ToDO</title>
+        <title>ToDo</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/todo.css' %}">
     </head>
     <body>
-        <h1>ToDoList</h1>
+        <center><h1><a href="/">ToDoList</a></h1></center>
+            <center><form method="POST" class="post-form">
+                {% csrf_token %}
+                
+                {{ form.as_p }}
+                <button type="submit" class="save btn btn-default">Save</button>
+            </form></center>
         {% for task in tasks %}
-            <p>{{ task.task }}</p>
+            <div class="alert alert-info" role="alert">
+                <a class="btn btn-default" href="{% url 'remove' pk=task.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                <center><p>{{ task.task }}</p></center>
+              </div>
         {% endfor %}
     </body>
 </html>
