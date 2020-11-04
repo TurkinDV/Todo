@@ -4,5 +4,8 @@
     </head>
     <body>
         <h1>ToDoList</h1>
+        {% for task in tasks %}
+            <p>{{ task.task }}</p>
+        {% endfor %}
     </body>
 </html>

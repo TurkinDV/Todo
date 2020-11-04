@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import ToDoList
 
 def index(request):
-    return render(request, 'todo/index.html', {})
+    tasks = ToDoList.objects.all()
+    return render(request, 'todo/index.html', {'tasks':tasks})
